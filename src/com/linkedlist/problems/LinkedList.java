@@ -2,8 +2,9 @@
 //Use Case 1 is to create a simple linked list of 56,30 and 70.
 //Use Case 2 is to create LinkedList by adding 30,56 to 70. Sequence is 56-->30-->70 but adding vice-versa.
 //Use Case 3 is to create a LinkedList by appending 30 and 70 to 56. Sequence is 56-->30-->70.
-//Use case 4 is to add 30 in between 56 and 70 in the linked list. Sequence is 56-->30-->70.
-//Use case 5 is to delete first element in the linked list. Given sequence is 56-->30-->70 and o/p will be 30-->70.
+//Use Case 4 is to add 30 in between 56 and 70 in the linked list. Sequence is 56-->30-->70.
+//Use Case 5 is to delete first element in the linked list. Given sequence is 56-->30-->70 and o/p will be 30-->70.
+//Use Case 6 is to delete last element in the linked list. Given sequence is 56-->30-->70 and o/p will be 56-->30.
 
 package com.linkedlist.problems;
 
@@ -59,19 +60,24 @@ public class LinkedList {
         newNode.next = temp;
     }
 
-    //Delete the first element in the linked list
-    public void pop()
+    //Delete the last element in the linked list
+    public void popLast()
     {
         if (head == null)
         {
             System.out.println("List is empty");
-            return;
         }
         else
         {
             if (head != tail)
             {
-                head = head.next;
+                Node current = head;
+                while (current.next.next != null)
+                {
+                    current = current.next;
+                }
+                tail = current;
+                tail.next = null;
             }
             else
             {
@@ -104,9 +110,9 @@ public class LinkedList {
         list.addAfterParticularNode(30);
         System.out.println("Original Linked List");
         list.printLinkedList();
-        list.pop();
+        list.popLast();
         System.out.println();
-        System.out.println("After removing first element from Linked List");
+        System.out.println("After removing last element from Linked List");
         list.printLinkedList();
     }
 }
