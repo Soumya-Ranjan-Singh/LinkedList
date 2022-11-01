@@ -5,6 +5,7 @@
 //Use Case 4 is to add 30 in between 56 and 70 in the linked list. Sequence is 56-->30-->70.
 //Use Case 5 is to delete first element in the linked list. Given sequence is 56-->30-->70 and o/p will be 30-->70.
 //Use Case 6 is to delete last element in the linked list. Given sequence is 56-->30-->70 and o/p will be 56-->30.
+//Use Case 7 is to search linked list to find node with value 30. Given sequence is 56-->30-->70.
 
 package com.linkedlist.problems;
 
@@ -39,51 +40,22 @@ public class LinkedList {
         tail = newNode;
     }
 
-    //Add the node in the middle.
-    public void addAfterParticularNode(int value)
+    //Search the LinkedList to find a particular node
+    public void checkNode(int value)
     {
         Node current = head;
+        int count = 1;
         while (current != null)
         {
-            if (!(current.data == 56))
+            if (current.data == value)
             {
-                current = current.next;
+                System.out.println("Searched key : "+value+" is present at node : "+count);
+                return;
             }
-            else if (current.data == 56)
-            {
-                break;
-            }
+            current = current.next;
+            count++;
         }
-        Node newNode = new Node(value);
-        Node temp = current.next;
-        current.next = newNode;
-        newNode.next = temp;
-    }
-
-    //Delete the last element in the linked list
-    public void popLast()
-    {
-        if (head == null)
-        {
-            System.out.println("List is empty");
-        }
-        else
-        {
-            if (head != tail)
-            {
-                Node current = head;
-                while (current.next.next != null)
-                {
-                    current = current.next;
-                }
-                tail = current;
-                tail.next = null;
-            }
-            else
-            {
-                head = tail = null;
-            }
-        }
+        System.out.println("Searched key is not present in the LinkedList");
     }
 
     //Print LinkedList
@@ -106,13 +78,10 @@ public class LinkedList {
         LinkedList list = new LinkedList();
         System.out.println("Welcome to LinkedList program");
         list.addToLinkedList(56);
+        list.addToLinkedList(30);
         list.addToLinkedList(70);
-        list.addAfterParticularNode(30);
-        System.out.println("Original Linked List");
         list.printLinkedList();
-        list.popLast();
         System.out.println();
-        System.out.println("After removing last element from Linked List");
-        list.printLinkedList();
+        list.checkNode(30);
     }
 }
