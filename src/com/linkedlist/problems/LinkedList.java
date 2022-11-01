@@ -3,6 +3,7 @@
 //Use Case 2 is to create LinkedList by adding 30,56 to 70. Sequence is 56-->30-->70 but adding vice-versa.
 //Use Case 3 is to create a LinkedList by appending 30 and 70 to 56. Sequence is 56-->30-->70.
 //Use case 4 is to add 30 in between 56 and 70 in the linked list. Sequence is 56-->30-->70.
+//Use case 5 is to delete first element in the linked list. Given sequence is 56-->30-->70 and o/p will be 30-->70.
 
 package com.linkedlist.problems;
 
@@ -58,10 +59,36 @@ public class LinkedList {
         newNode.next = temp;
     }
 
+    //Delete the first element in the linked list
+    public void pop()
+    {
+        if (head == null)
+        {
+            System.out.println("List is empty");
+            return;
+        }
+        else
+        {
+            if (head != tail)
+            {
+                head = head.next;
+            }
+            else
+            {
+                head = tail = null;
+            }
+        }
+    }
+
     //Print LinkedList
     public void printLinkedList()
     {
         Node current = head;
+        if (head == null)
+        {
+            System.out.println("LinkedList is empty");
+            return;
+        }
         while (current != null)
         {
             System.out.print(current.data+"  ");
@@ -72,11 +99,14 @@ public class LinkedList {
     public static void main(String[] args) {
         LinkedList list = new LinkedList();
         System.out.println("Welcome to LinkedList program");
-        list.addToLinkedList(56);//56 is added first
+        list.addToLinkedList(56);
         list.addToLinkedList(70);
-        list.printLinkedList();
         list.addAfterParticularNode(30);
+        System.out.println("Original Linked List");
+        list.printLinkedList();
+        list.pop();
         System.out.println();
+        System.out.println("After removing first element from Linked List");
         list.printLinkedList();
     }
 }
